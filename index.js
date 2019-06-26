@@ -1,15 +1,22 @@
 const fs = require('fs');
+const { join } = require('path');
 
-function createFile(name, content) {
-    fs.writeFile(name, content, err => {
-        if(err) console.error(err);
-        console.log(`Created file ${name}.`);
+const dir = join(__dirname, 'files');
+
+function readFiles(dir, callback) {
+    fs.readdir(dir, (err, data) => {
+        if(err) throw err;
+        return callback(null, data);
     });
 }
 
+const filesArray = readFiles(dir, files => {
 
-for(let i = 1; i < 100; i++) {
-    const words = ['dinosaur', 'weird', 'wizard', 'dragon', 'drake', 'goblin', 'planeswalker'];
-    const random = Math.floor(Math.random() * words.length);
-    createFile(`./files/${i}.txt`, words[random]);
-}
+});
+
+
+
+
+
+
+
